@@ -35,6 +35,11 @@ public class VoxelAnimator : MonoBehaviour
 	#endregion
 	
 	#region Methods
+
+	public void AddAnimation()
+	{
+		Animations.Add(new VoxelAnimation());
+	}
 	public void AddFloatParam()
 	{
 		FloatParameters.Add(new FloatParameter());

@@ -16,6 +16,8 @@ public class VoxelAnimatorEditor : Editor
 	#region Properties (public)
 
 	VoxelAnimator animator;
+	Vector2 floatListScrollPos = Vector2.zero;
+
 
 	#endregion
 	
@@ -29,7 +31,6 @@ public class VoxelAnimatorEditor : Editor
 	public void OnEditorGUI()
 	{
 		animator = (VoxelAnimator)target;
-
 		EditorGUILayout.BeginHorizontal(GUILayout.Width(paramViewWidth));
 		ParameterView();
 		EditorGUILayout.EndHorizontal();
@@ -42,7 +43,7 @@ public class VoxelAnimatorEditor : Editor
 	private void ParameterView()
 	{
 		EditorGUILayout.BeginVertical(GUILayout.Width(paramViewWidth));
-		EditorGUILayout.LabelField("Animator Parmeters", GUILayout.Width(paramViewWidth));
+		EditorGUILayout.LabelField("Animator Parmeters", GUILayout.Width(paramViewWidth + 20));
 		if(GUILayout.Button("Add Float"))
 		{
 			animator.AddFloatParam();
@@ -65,7 +66,7 @@ public class VoxelAnimatorEditor : Editor
 	{
 		if(animator.FloatParameters.Count > 0)
 		{
-			EditorGUILayout.BeginScrollView(new Vector2(0, 0));
+			floatListScrollPos = EditorGUILayout.BeginScrollView(floatListScrollPos);
 			for(int i = 0; i < animator.FloatParameters.Count; i++)
 			{
 				bool deleted = false;
@@ -95,7 +96,8 @@ public class VoxelAnimatorEditor : Editor
 	{
 		if(animator.TriggerParameters.Count > 0)
 		{
-			EditorGUILayout.BeginScrollView(new Vector2(0, 0));
+			EditorGUILayout.BeginScrollView(new Vector2(0, 0), GUILayout.MinHeight(120));
+			
 			for(int i = 0; i < animator.TriggerParameters.Count; i++)
 			{
 				bool deleted = false;
@@ -117,9 +119,9 @@ public class VoxelAnimatorEditor : Editor
 			deleted = true;
 		}
 		EditorGUILayout.EndHorizontal();	
-		param.Name = EditorGUILayout.TextField(param.Name);
+		param.Name = EditorGUILayout.TextField(param.Name, GUILayout.Width(paramViewWidth));
 		EditorGUILayout.LabelField("Value");
-		param.Value = EditorGUILayout.FloatField(param.Value);
+		param.Value = EditorGUILayout.FloatField(param.Value, GUILayout.Width(paramViewWidth));
 	}
 	private void BoolParamView(BoolParameter param, ref bool deleted)
 	{	
@@ -131,9 +133,9 @@ public class VoxelAnimatorEditor : Editor
 			deleted = true;
 		}
 		EditorGUILayout.EndHorizontal();	
-		param.Name = EditorGUILayout.TextField(param.Name);
+		param.Name = EditorGUILayout.TextField(param.Name, GUILayout.Width(paramViewWidth));
 		EditorGUILayout.LabelField("Value");
-		param.Value = EditorGUILayout.Toggle(param.Value);
+		param.Value = EditorGUILayout.Toggle(param.Value, GUILayout.Width(paramViewWidth));
 	}
 	private void TriggerParamView(TriggerParameter param, ref bool deleted)
 	{	
@@ -145,9 +147,9 @@ public class VoxelAnimatorEditor : Editor
 			deleted = true;
 		}
 		EditorGUILayout.EndHorizontal();	
-		param.Name = EditorGUILayout.TextField(param.Name);
+		param.Name = EditorGUILayout.TextField(param.Name, GUILayout.Width(paramViewWidth));
 		EditorGUILayout.LabelField("Value");
-		param.Value = EditorGUILayout.Toggle(param.Value);
+		param.Value = EditorGUILayout.Toggle(param.Value, GUILayout.Width(paramViewWidth));
 	}
 	
 	#endregion

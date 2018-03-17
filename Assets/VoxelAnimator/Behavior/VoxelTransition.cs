@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class VoxelAnimation 
+public class VoxelTransition 
 {
 	#region Variables (private)
 	
@@ -11,16 +11,7 @@ public class VoxelAnimation
 	
 	#region Properties (public)
 	
-	public string Name = "Animation";
-	public List<Mesh> Frames;
-	public List<float> KeyFrames;
-	public List<VoxelTransition> Transitions = new List<VoxelTransition>();
-
-	public int CurFrame;
-	
-	public bool IsPlaying = false;
-
-	public float AnimationTime = 0;
+	public VoxelAnimation TargetAnimation;
 
 	#endregion
 	
